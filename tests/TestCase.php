@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EriBloo\CacheObjects\Tests;
 
 use EriBloo\CacheObjects\CacheObjectsServiceProvider;
@@ -13,15 +15,15 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'EriBloo\\CacheObjects\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'EriBloo\\CacheObjects\\Database\\Factories\\' . class_basename(
+                $modelName,
+            ) . 'Factory',
         );
     }
 
     protected function getPackageProviders($app)
     {
-        return [
-            CacheObjectsServiceProvider::class,
-        ];
+        return [CacheObjectsServiceProvider::class];
     }
 
     public function getEnvironmentSetUp($app)

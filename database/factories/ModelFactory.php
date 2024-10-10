@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EriBloo\CacheObjects\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -8,11 +10,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class ModelFactory extends Factory
 {
     protected $model = YourModel::class;
-
     public function definition()
     {
         return [
-
         ];
     }
 }

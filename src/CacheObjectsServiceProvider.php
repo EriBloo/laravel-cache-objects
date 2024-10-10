@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EriBloo\CacheObjects;
 
 use EriBloo\CacheObjects\Commands\CacheObjectsCommand;
