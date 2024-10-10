@@ -20,7 +20,7 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 You can install the package via composer:
 
 ```bash
-composer require 19932449-eribloo/laravel-cache-objects
+composer require eribloo/laravel-cache-objects
 ```
 
 You can publish and run the migrations with:
