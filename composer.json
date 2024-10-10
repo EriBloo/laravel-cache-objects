@@ -4,7 +4,9 @@
     "keywords": [
         "EriBloo",
         "laravel",
-        "laravel-cache-objects"
+        "laravel-cache-objects",
+        "php",
+        "cache"
     ],
     "homepage": "https://github.com/19932449-eribloo/laravel-cache-objects",
     "license": "MIT",
