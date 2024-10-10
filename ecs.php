@@ -9,7 +9,7 @@ use PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
 return ECSConfig::configure()
-    ->withPaths([__DIR__ . '/src', __DIR__ . '/database', __DIR__ . '/tests'])
+    ->withPaths([__DIR__ . '/src', __DIR__ . '/tests'])
     ->withPreparedSets(psr12: true, common: true, symplify: true, strict: true, cleanCode: true)
     ->withPhpCsFixerSets(perCS20: true)
     ->withConfiguredRule(FunctionDeclarationFixer::class, [
