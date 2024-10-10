@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace EriBloo\CacheObjects\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class CacheObjectsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-cache-objects';
 
     public $description = 'My command';
 
