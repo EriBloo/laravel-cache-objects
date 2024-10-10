@@ -36,8 +36,7 @@
     },
     "autoload": {
         "psr-4": {
-            "EriBloo\\CacheObjects\\": "src/",
-            "EriBloo\\CacheObjects\\Database\\Factories\\": "database/factories/"
+            "EriBloo\\CacheObjects\\": "src/"        
         }
     },
     "autoload-dev": {
