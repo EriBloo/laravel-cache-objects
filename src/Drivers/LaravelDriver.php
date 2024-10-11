@@ -14,17 +14,19 @@ final class LaravelDriver implements CacheObjectDriver
         private readonly Store $repository,
     ) {}
 
-    public function set(mixed $value, CacheObject $cacheObject): bool
+    public function set(mixed $value, CacheObject $cacheObject): string
     {
         $key = $this->prepareKey($cacheObject);
         $value = $this->prepareValue($value);
         $ttl = $this->prepareTtl($cacheObject);
 
         if ($ttl <= 0) {
-            return $this->repository->forever($key, $value);
+            $this->repository->forever($key, $value);
+        } else {
+            $this->repository->put($key, $value, $ttl);
         }
 
-        return $this->repository->put($key, $value, $ttl);
+        return $key;
     }
 
     public function get(CacheObject $cacheObject): mixed

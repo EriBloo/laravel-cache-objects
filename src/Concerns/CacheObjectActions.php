@@ -14,7 +14,7 @@ trait CacheObjectActions
     /**
      * @param TValue $value
      */
-    public function store(mixed $value): bool
+    public function store(mixed $value): string
     {
         /** @var CacheObjectDriver $driver */
         $driver = app()

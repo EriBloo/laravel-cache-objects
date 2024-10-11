@@ -18,7 +18,7 @@ interface CacheObject
     /**
      * @param TValue $value
      */
-    public function store(mixed $value): bool;
+    public function store(mixed $value): string;
 
     /**
      * @return TValue

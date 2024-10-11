@@ -12,7 +12,7 @@ interface CacheObjectDriver
      * @param TValue $value
      * @param CacheObject<TValue> $cacheObject
      */
-    public function set(mixed $value, CacheObject $cacheObject): bool;
+    public function set(mixed $value, CacheObject $cacheObject): string;
 
     /**
      * @template TValue
