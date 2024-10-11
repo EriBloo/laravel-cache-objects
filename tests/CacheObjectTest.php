@@ -26,6 +26,6 @@ it('hashes key while storing', function () {
     $key = $obj->store('test');
 
     // assert
-    assertEquals(hash($obj->hashAlgo(), $obj->key()), $key);
+    assertEquals(hash('sha256', 'hashed-cache-object'), $key);
     assertEquals('test', $obj->retrieve());
 });

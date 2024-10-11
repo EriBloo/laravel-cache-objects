@@ -11,7 +11,7 @@ use Carbon\CarbonInterval;
  */
 interface CacheObject
 {
-    public function key(): string;
+    public function key(): CacheKey;
 
     public function ttl(): CarbonInterval;
 
