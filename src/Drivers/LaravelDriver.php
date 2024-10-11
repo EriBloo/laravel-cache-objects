@@ -6,6 +6,7 @@ namespace EriBloo\CacheObjects\Drivers;
 
 use EriBloo\CacheObjects\Contracts\CacheObject;
 use EriBloo\CacheObjects\Contracts\CacheObjectDriver;
+use EriBloo\CacheObjects\Contracts\HashedKey;
 use Illuminate\Contracts\Cache\Store;
 
 final class LaravelDriver implements CacheObjectDriver
@@ -53,7 +54,13 @@ final class LaravelDriver implements CacheObjectDriver
      */
     private function prepareKey(CacheObject $cacheObject): string
     {
-        return $cacheObject->key();
+        $key = $cacheObject->key();
+
+        if ($cacheObject instanceof HashedKey) {
+            return hash($cacheObject->hashAlgo(), $key);
+        }
+
+        return $key;
     }
 
     private function prepareValue(mixed $value): string
