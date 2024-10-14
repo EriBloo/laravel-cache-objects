@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EriBloo\CacheObjects\Tests;
 
 use Cache;
+use Config;
 use EriBloo\CacheObjects\CacheObjectsServiceProvider;
 use EriBloo\CacheObjects\Contracts\CacheObjectDriver;
 use EriBloo\CacheObjects\Drivers\LaravelDriver;
@@ -27,7 +28,9 @@ class TestCase extends Orchestra
         $store = new ArrayStore;
         $this->app?->instance('store', $store);
         $this->app?->instance(CacheObjectDriver::class, new LaravelDriver($store));
-        Cache::spy();
+
+        Config::set('app.key', random_bytes(32));
+        Config::set('app.cipher', 'aes-256-cbc');
     }
 
     protected function getPackageProviders($app)

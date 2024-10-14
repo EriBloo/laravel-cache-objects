@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use EriBloo\CacheObjects\Tests\Fixtures\BasicCacheObject;
+use EriBloo\CacheObjects\Tests\Fixtures\EncryptedCacheObject;
 use EriBloo\CacheObjects\Tests\Fixtures\HashedCacheObject;
 
 use function PHPUnit\Framework\assertEquals;
@@ -43,4 +44,16 @@ it('deletes objects properly', function () {
 
     // assert
     assertNull($obj->retrieve());
+});
+
+it('encrypts value properly', function () {
+    // prepare
+    $obj = new EncryptedCacheObject;
+
+    // execute
+    $obj->store('test');
+
+    // assert
+    assertEquals(serialize('test'), Crypt::decryptString(app('store')->get((string) $obj->key())));
+    assertEquals('test', $obj->retrieve());
 });
