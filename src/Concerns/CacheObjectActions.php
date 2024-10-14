@@ -16,11 +16,8 @@ trait CacheObjectActions
      */
     public function store(mixed $value): string
     {
-        /** @var CacheObjectDriver $driver */
-        $driver = app()
-            ->make(CacheObjectDriver::class);
-
-        return $driver->set($value, $this);
+        return $this->resolveDriver()
+            ->set($value, $this);
     }
 
     /**
@@ -28,19 +25,18 @@ trait CacheObjectActions
      */
     public function retrieve(): mixed
     {
-        /** @var CacheObjectDriver $driver */
-        $driver = app()
-            ->make(CacheObjectDriver::class);
-
-        return $driver->get($this);
+        return $this->resolveDriver()
+            ->get($this);
     }
 
     public function delete(): bool
     {
-        /** @var CacheObjectDriver $driver */
-        $driver = app()
-            ->make(CacheObjectDriver::class);
+        return $this->resolveDriver()
+            ->delete($this);
+    }
 
-        return $driver->delete($this);
+    protected function resolveDriver(): CacheObjectDriver
+    {
+        return app()->make(CacheObjectDriver::class);
     }
 }
