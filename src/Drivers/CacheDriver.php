@@ -8,7 +8,7 @@ use EriBloo\CacheObjects\Contracts\CacheObject;
 use EriBloo\CacheObjects\Contracts\CacheObjectDriver;
 use Illuminate\Contracts\Cache\Store;
 
-final class LaravelDriver implements CacheObjectDriver
+final class CacheDriver implements CacheObjectDriver
 {
     public function __construct(
         private readonly Store $store,
