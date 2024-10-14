@@ -11,7 +11,7 @@ use Illuminate\Contracts\Cache\Store;
 final class LaravelDriver implements CacheObjectDriver
 {
     public function __construct(
-        private readonly Store $repository,
+        private readonly Store $store,
     ) {}
 
     public function set(mixed $value, CacheObject $cacheObject): string
@@ -23,9 +23,9 @@ final class LaravelDriver implements CacheObjectDriver
             ->total('seconds');
 
         if ($ttl <= 0) {
-            $this->repository->forever($key, $value);
+            $this->store->forever($key, $value);
         } else {
-            $this->repository->put($key, $value, $ttl);
+            $this->store->put($key, $value, $ttl);
         }
 
         return $key;
@@ -34,7 +34,7 @@ final class LaravelDriver implements CacheObjectDriver
     public function get(CacheObject $cacheObject): mixed
     {
         $key = (string) $cacheObject->key();
-        $value = $this->repository->get($key);
+        $value = $this->store->get($key);
 
         if ($value === null) {
             return null;
@@ -46,6 +46,6 @@ final class LaravelDriver implements CacheObjectDriver
 
     public function delete(CacheObject $cacheObject): bool
     {
-        return $this->repository->forget((string) $cacheObject->key());
+        return $this->store->forget((string) $cacheObject->key());
     }
 }
