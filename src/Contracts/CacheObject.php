@@ -14,14 +14,4 @@ interface CacheObject
     public function key(): CacheKey;
 
     public function ttl(): CarbonInterval;
-
-    /**
-     * @param TValue $value
-     */
-    public function store(mixed $value): string;
-
-    /**
-     * @return TValue
-     */
-    public function retrieve(): mixed;
 }
