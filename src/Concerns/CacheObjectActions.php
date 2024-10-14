@@ -34,4 +34,13 @@ trait CacheObjectActions
 
         return $driver->get($this);
     }
+
+    public function delete(): bool
+    {
+        /** @var CacheObjectDriver $driver */
+        $driver = app()
+            ->make(CacheObjectDriver::class);
+
+        return $driver->delete($this);
+    }
 }

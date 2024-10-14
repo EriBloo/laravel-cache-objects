@@ -6,6 +6,8 @@ use EriBloo\CacheObjects\Tests\Fixtures\BasicCacheObject;
 use EriBloo\CacheObjects\Tests\Fixtures\HashedCacheObject;
 
 use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertNotNull;
+use function PHPUnit\Framework\assertNull;
 
 it('stores basic cache object', function () {
     // prepare
@@ -28,4 +30,17 @@ it('hashes key while storing', function () {
     // assert
     assertEquals(hash('sha256', 'hashed-cache-object'), $key);
     assertEquals('test', $obj->retrieve());
+});
+
+it('deletes objects properly', function () {
+    // prepare
+    $obj = new BasicCacheObject('key');
+    $obj->store('test');
+    assertNotNull($obj->retrieve());
+
+    // execute
+    $obj->delete();
+
+    // assert
+    assertNull($obj->retrieve());
 });
