@@ -23,8 +23,7 @@ class CacheObjectsServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-cache-objects')
-            ->hasCommand(MakeCacheObject::class)
-            ->hasConfigFile();
+            ->hasCommand(MakeCacheObject::class);
 
         $this->app->scoped(CacheObjectDriver::class, function (Application $app) {
             return new LaravelDriver($app->make(Store::class));
