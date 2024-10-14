@@ -16,6 +16,7 @@ return ECSConfig::configure()
         'closure_function_spacing' => 'one',
     ])
     ->withSkip([
+        __DIR__ . '/src/Commands/stubs',
         GeneralPhpdocAnnotationRemoveFixer::class,
         NewWithParenthesesFixer::class,
         NewWithBracesFixer::class,
