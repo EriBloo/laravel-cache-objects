@@ -16,6 +16,7 @@ use EriBloo\CacheObjects\ValueObjects\Values\SerializeModifier;
  */
 final readonly class HashedCacheObject implements CacheObject
 {
+    /** @use CacheObjectActions<string> */
     use CacheObjectActions;
 
     public function key(): HashedKey
@@ -28,6 +29,9 @@ final readonly class HashedCacheObject implements CacheObject
         return CarbonInterval::seconds(0);
     }
 
+    /**
+     * @return SerializeModifier<string>
+     */
     public function modifier(): SerializeModifier
     {
         return new SerializeModifier(false);

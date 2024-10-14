@@ -11,8 +11,12 @@ use EriBloo\CacheObjects\ValueObjects\Keys\StringKey;
 use EriBloo\CacheObjects\ValueObjects\Values\EncryptedModifier;
 use EriBloo\CacheObjects\ValueObjects\Values\SerializeModifier;
 
+/**
+ * @implements CacheObject<string>
+ */
 final readonly class EncryptedCacheObject implements CacheObject
 {
+    /** @use CacheObjectActions<string> */
     use CacheObjectActions;
 
     public function key(): StringKey
@@ -25,6 +29,9 @@ final readonly class EncryptedCacheObject implements CacheObject
         return CarbonInterval::seconds(0);
     }
 
+    /**
+     * @return EncryptedModifier<string>
+     */
     public function modifier(): EncryptedModifier
     {
         return new EncryptedModifier(new SerializeModifier(false));

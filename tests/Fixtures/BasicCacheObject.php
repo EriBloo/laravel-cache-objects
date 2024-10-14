@@ -32,6 +32,9 @@ final readonly class BasicCacheObject implements CacheObject
         return CarbonInterval::seconds(0);
     }
 
+    /**
+     * @return SerializeModifier<string>
+     */
     public function modifier(): SerializeModifier
     {
         return new SerializeModifier(false);
