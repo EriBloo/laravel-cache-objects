@@ -20,7 +20,7 @@ final class LaravelDriver implements CacheObjectDriver
         $value = $cacheObject->modifier()
             ->onSave($value);
         $ttl = (int) $cacheObject->ttl()
-->totalSeconds;
+            ->total('seconds');
 
         if ($ttl <= 0) {
             $this->repository->forever($key, $value);
