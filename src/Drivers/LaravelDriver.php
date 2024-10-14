@@ -16,9 +16,11 @@ final class LaravelDriver implements CacheObjectDriver
 
     public function set(mixed $value, CacheObject $cacheObject): string
     {
-        $key = $this->prepareKey($cacheObject);
-        $value = $this->prepareValue($value);
-        $ttl = $this->prepareTtl($cacheObject);
+        $key = (string) $cacheObject->key();
+        $value = $cacheObject->modifier()
+            ->onSave($value);
+        $ttl = (int) $cacheObject->ttl()
+->totalSeconds;
 
         if ($ttl <= 0) {
             $this->repository->forever($key, $value);
@@ -31,49 +33,19 @@ final class LaravelDriver implements CacheObjectDriver
 
     public function get(CacheObject $cacheObject): mixed
     {
-        $key = $this->prepareKey($cacheObject);
+        $key = (string) $cacheObject->key();
         $value = $this->repository->get($key);
 
         if ($value === null) {
             return null;
         }
 
-        return $this->prepareReturn($value);
+        return $cacheObject->modifier()
+            ->onLoad($value);
     }
 
     public function delete(CacheObject $cacheObject): bool
     {
-        return $this->repository->forget($this->prepareKey($cacheObject));
-    }
-
-    /**
-     * @template TValue
-     *
-     * @param CacheObject<TValue> $cacheObject
-     */
-    private function prepareKey(CacheObject $cacheObject): string
-    {
-        return (string) $cacheObject->key();
-    }
-
-    private function prepareValue(mixed $value): string
-    {
-        return serialize($value);
-    }
-
-    private function prepareReturn(string $value): mixed
-    {
-        return unserialize($value);
-    }
-
-    /**
-     * @template TValue
-     *
-     * @param CacheObject<TValue> $cacheObject
-     */
-    private function prepareTtl(CacheObject $cacheObject): int
-    {
-        return (int) $cacheObject->ttl()
-            ->totalSeconds;
+        return $this->repository->forget((string) $cacheObject->key());
     }
 }

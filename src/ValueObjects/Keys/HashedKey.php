@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EriBloo\CacheObjects\ValueObjects;
+namespace EriBloo\CacheObjects\ValueObjects\Keys;
 
 use EriBloo\CacheObjects\Contracts\CacheKey;
 use InvalidArgumentException;

@@ -7,7 +7,8 @@ namespace EriBloo\CacheObjects\Tests\Fixtures;
 use Carbon\CarbonInterval;
 use EriBloo\CacheObjects\Concerns\CacheObjectActions;
 use EriBloo\CacheObjects\Contracts\CacheObject;
-use EriBloo\CacheObjects\ValueObjects\StringKey;
+use EriBloo\CacheObjects\ValueObjects\Keys\StringKey;
+use EriBloo\CacheObjects\ValueObjects\Values\SerializeModifier;
 
 /**
  * @implements CacheObject<string>
@@ -29,5 +30,10 @@ final readonly class BasicCacheObject implements CacheObject
     public function ttl(): CarbonInterval
     {
         return CarbonInterval::seconds(0);
+    }
+
+    public function modifier(): SerializeModifier
+    {
+        return new SerializeModifier(false);
     }
 }
