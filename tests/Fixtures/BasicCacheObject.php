@@ -12,6 +12,8 @@ use EriBloo\CacheObjects\ValueObjects\Values\SerializeTransformer;
 
 /**
  * @implements CacheObject<string>
+ *
+ * @method static self make(string $value)
  */
 final readonly class BasicCacheObject implements CacheObject
 {

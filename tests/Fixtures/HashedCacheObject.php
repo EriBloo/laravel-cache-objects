@@ -13,6 +13,8 @@ use EriBloo\CacheObjects\ValueObjects\Values\SerializeTransformer;
 
 /**
  * @implements CacheObject<string>
+ *
+ * @method static self make()
  */
 final readonly class HashedCacheObject implements CacheObject
 {

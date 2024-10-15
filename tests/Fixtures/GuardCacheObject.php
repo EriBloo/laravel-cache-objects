@@ -13,12 +13,13 @@ use EriBloo\CacheObjects\ValueObjects\Values\SerializeTransformer;
 use Closure;
 
 /**
- * @template ObjectWithTime
- *
  * @implements CacheObject<ObjectWithTime>
+ *
+ * @method static self make(Closure|null $onSaveGuard, Closure|null $onLoadGuard)
  */
 final class GuardCacheObject implements CacheObject
 {
+    /** @use CacheObjectActions<ObjectWithTime> */
     use CacheObjectActions;
 
     public function __construct(
