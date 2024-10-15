@@ -31,7 +31,7 @@ final readonly class SomeUserCache implements CacheObject
 
     public function ttl(): CarbonInterval
     {
-        return CarbonInterval::minutes(15));
+        return CarbonInterval::minutes(15);
     }
 
     /**
@@ -87,7 +87,7 @@ composer require eribloo/laravel-cache-objects
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-cache-objects-config"
+php artisan vendor:publish --tag="cache-objects-config"
 ```
 
 This is the contents of the published config file:
