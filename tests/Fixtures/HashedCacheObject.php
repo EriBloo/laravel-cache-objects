@@ -9,7 +9,7 @@ use EriBloo\CacheObjects\Concerns\CacheObjectActions;
 use EriBloo\CacheObjects\Contracts\CacheObject;
 use EriBloo\CacheObjects\ValueObjects\Keys\HashedKey;
 use EriBloo\CacheObjects\ValueObjects\Keys\StringKey;
-use EriBloo\CacheObjects\ValueObjects\Values\SerializeModifier;
+use EriBloo\CacheObjects\ValueObjects\Values\SerializeTransformer;
 
 /**
  * @implements CacheObject<string>
@@ -30,10 +30,10 @@ final readonly class HashedCacheObject implements CacheObject
     }
 
     /**
-     * @return SerializeModifier<string>
+     * @return SerializeTransformer<string>
      */
-    public function modifier(): SerializeModifier
+    public function transformer(): SerializeTransformer
     {
-        return new SerializeModifier(false);
+        return new SerializeTransformer(false);
     }
 }

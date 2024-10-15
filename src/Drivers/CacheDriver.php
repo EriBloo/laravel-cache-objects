@@ -17,7 +17,7 @@ final class CacheDriver implements CacheObjectDriver
     public function set(mixed $value, CacheObject $cacheObject): string
     {
         $key = (string) $cacheObject->key();
-        $value = $cacheObject->modifier()
+        $value = $cacheObject->transformer()
             ->onSave($value);
         $ttl = (int) $cacheObject->ttl()
             ->total('seconds');
@@ -40,7 +40,7 @@ final class CacheDriver implements CacheObjectDriver
             return null;
         }
 
-        return $cacheObject->modifier()
+        return $cacheObject->transformer()
             ->onLoad($value);
     }
 

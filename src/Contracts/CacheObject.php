@@ -16,7 +16,7 @@ interface CacheObject
     public function ttl(): CarbonInterval;
 
     /**
-     * @return CacheValueModifier<TValue>
+     * @return CacheValueTransformer<TValue>
      */
-    public function modifier(): CacheValueModifier;
+    public function transformer(): CacheValueTransformer;
 }

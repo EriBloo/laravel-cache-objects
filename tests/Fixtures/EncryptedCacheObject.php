@@ -8,8 +8,8 @@ use Carbon\CarbonInterval;
 use EriBloo\CacheObjects\Concerns\CacheObjectActions;
 use EriBloo\CacheObjects\Contracts\CacheObject;
 use EriBloo\CacheObjects\ValueObjects\Keys\StringKey;
-use EriBloo\CacheObjects\ValueObjects\Values\EncryptedModifier;
-use EriBloo\CacheObjects\ValueObjects\Values\SerializeModifier;
+use EriBloo\CacheObjects\ValueObjects\Values\EncryptedTransformer;
+use EriBloo\CacheObjects\ValueObjects\Values\SerializeTransformer;
 
 /**
  * @implements CacheObject<string>
@@ -30,10 +30,10 @@ final readonly class EncryptedCacheObject implements CacheObject
     }
 
     /**
-     * @return EncryptedModifier<string>
+     * @return EncryptedTransformer<string>
      */
-    public function modifier(): EncryptedModifier
+    public function transformer(): EncryptedTransformer
     {
-        return new EncryptedModifier(new SerializeModifier(false));
+        return new EncryptedTransformer(new SerializeTransformer(false));
     }
 }

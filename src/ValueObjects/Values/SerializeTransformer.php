@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace EriBloo\CacheObjects\ValueObjects\Values;
 
-use EriBloo\CacheObjects\Contracts\CacheValueModifier;
+use EriBloo\CacheObjects\Contracts\CacheValueTransformer;
 
 /**
  * @template TValue
  *
- * @implements CacheValueModifier<TValue>
+ * @implements CacheValueTransformer<TValue>
  */
-final readonly class SerializeModifier implements CacheValueModifier
+final readonly class SerializeTransformer implements CacheValueTransformer
 {
     /**
      * @param class-string[]|bool $allowedClasses
