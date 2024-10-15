@@ -11,6 +11,11 @@ use EriBloo\CacheObjects\Contracts\CacheObjectDriver;
  */
 trait CacheObjectActions
 {
+    public static function make(mixed ...$arguments): self
+    {
+        return new self(...$arguments);
+    }
+
     /**
      * @param TValue $value
      */
