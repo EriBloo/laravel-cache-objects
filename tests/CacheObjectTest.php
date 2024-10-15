@@ -56,7 +56,7 @@ it('encrypts value properly', function () {
     $obj->store('test');
 
     // assert
-    assertEquals(serialize('test'), Crypt::decryptString(app('store')->get((string) $obj->key())));
+    assertEquals(serialize('test'), Crypt::decryptString(cache()->get((string) $obj->key())));
     assertEquals('test', $obj->retrieve());
 });
 

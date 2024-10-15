@@ -7,7 +7,6 @@ namespace EriBloo\CacheObjects;
 use EriBloo\CacheObjects\Commands\MakeCacheObject;
 use EriBloo\CacheObjects\Contracts\CacheObjectDriver;
 use EriBloo\CacheObjects\Drivers\CacheDriver;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Foundation\Application;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -27,7 +26,7 @@ class CacheObjectsServiceProvider extends PackageServiceProvider
             ->hasConfigFile();
 
         $this->app->scoped(CacheObjectDriver::class, function (Application $app) {
-            return new CacheDriver($app->make(Store::class));
+            return new CacheDriver($app->make('cache')->getStore());
         });
     }
 }

@@ -7,9 +7,6 @@ namespace EriBloo\CacheObjects\Tests;
 use Cache;
 use Config;
 use EriBloo\CacheObjects\CacheObjectsServiceProvider;
-use EriBloo\CacheObjects\Contracts\CacheObjectDriver;
-use EriBloo\CacheObjects\Drivers\CacheDriver;
-use Illuminate\Cache\ArrayStore;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -25,10 +22,7 @@ class TestCase extends Orchestra
             ) . 'Factory',
         );
 
-        $store = new ArrayStore;
-        $this->app?->instance('store', $store);
-        $this->app?->instance(CacheObjectDriver::class, new CacheDriver($store));
-
+        Cache::setDefaultDriver('array');
         Config::set('app.key', random_bytes(32));
         Config::set('app.cipher', 'aes-256-cbc');
     }
