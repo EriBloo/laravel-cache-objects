@@ -11,9 +11,9 @@ use EriBloo\CacheObjects\Contracts\CacheObjectDriver;
  */
 trait CacheObjectActions
 {
-    public static function make(mixed ...$arguments): self
+    public static function make(mixed ...$arguments): static
     {
-        return new self(...$arguments);
+        return new static(...$arguments); //@phpstan-ignore-line
     }
 
     /**
