@@ -1,6 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
-  // path to cache classes folder
-  'path' => app_path('Cache'),
+    'namespace' => 'App\Cache',
 ];

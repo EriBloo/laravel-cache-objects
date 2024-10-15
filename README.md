@@ -93,8 +93,7 @@ php artisan vendor:publish --tag="cache-objects-config"
 This is the contents of the published config file:
 ```php
 return [
-    // path to cache classes folder
-    'path' => app_path('Cache'),
+    'namespace' => 'App\Cache',
 ];
 ```
 
@@ -108,7 +107,7 @@ You can create basic Cache Object by running Artisan Command:
 php artisan make:cache-object SomeCacheObject
 ```
 
-this will create class implementing `EriBloo\CacheObjects\Contracts\CacheObject` in directory specified in config (with fallback to `app\Cache`) with some defaults for you to configure.
+this will create class implementing `EriBloo\CacheObjects\Contracts\CacheObject` in namespace specified in config with some defaults for you to configure.
 
 ### CacheObject
 

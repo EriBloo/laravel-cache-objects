@@ -28,6 +28,6 @@ class MakeCacheObject extends GeneratorCommand
 
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return config('cache-objects.path') ?: "{$rootNamespace}\Cache";
+        return config('cache-objects.namespace') ?: "{$rootNamespace}\Cache";
     }
 }
