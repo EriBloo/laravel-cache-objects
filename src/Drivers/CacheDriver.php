@@ -6,6 +6,10 @@ namespace EriBloo\CacheObjects\Drivers;
 
 use EriBloo\CacheObjects\Contracts\CacheObject;
 use EriBloo\CacheObjects\Contracts\CacheObjectDriver;
+use EriBloo\CacheObjects\Events\CacheObjectDeleted;
+use EriBloo\CacheObjects\Events\CacheObjectMissed;
+use EriBloo\CacheObjects\Events\CacheObjectRetrieved;
+use EriBloo\CacheObjects\Events\CacheObjectStored;
 use Illuminate\Contracts\Cache\Store;
 
 final class CacheDriver implements CacheObjectDriver
@@ -17,16 +21,18 @@ final class CacheDriver implements CacheObjectDriver
     public function set(mixed $value, CacheObject $cacheObject): string
     {
         $key = (string) $cacheObject->key();
-        $value = $cacheObject->transformer()
+        $transformed = $cacheObject->transformer()
             ->onSave($value);
         $ttl = (int) $cacheObject->ttl()
             ->total('seconds');
 
         if ($ttl <= 0) {
-            $this->store->forever($key, $value);
+            $this->store->forever($key, $transformed);
         } else {
-            $this->store->put($key, $value, $ttl);
+            $this->store->put($key, $transformed, $ttl);
         }
+
+        event(new CacheObjectStored($cacheObject, $value, $transformed));
 
         return $key;
     }
@@ -37,15 +43,27 @@ final class CacheDriver implements CacheObjectDriver
         $value = $this->store->get($key);
 
         if ($value === null) {
+            event(new CacheObjectMissed($cacheObject));
+
             return null;
         }
 
-        return $cacheObject->transformer()
+        $transformed = $cacheObject->transformer()
             ->onLoad($value);
+
+        event(new CacheObjectRetrieved($cacheObject, $value, $transformed));
+
+        return $transformed;
     }
 
     public function delete(CacheObject $cacheObject): bool
     {
-        return $this->store->forget((string) $cacheObject->key());
+        $result = $this->store->forget((string) $cacheObject->key());
+
+        if ($result === true) {
+            event(new CacheObjectDeleted($cacheObject));
+        }
+
+        return $result;
     }
 }
