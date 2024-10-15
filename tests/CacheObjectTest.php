@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use EriBloo\CacheObjects\Tests\Fixtures\BasicCacheObject;
 use EriBloo\CacheObjects\Tests\Fixtures\EncryptedCacheObject;
+use EriBloo\CacheObjects\Tests\Fixtures\GuardCacheObject;
 use EriBloo\CacheObjects\Tests\Fixtures\HashedCacheObject;
+use EriBloo\CacheObjects\Tests\Fixtures\ObjectWithTime;
 
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertNotNull;
@@ -57,3 +59,28 @@ it('encrypts value properly', function () {
     assertEquals(serialize('test'), Crypt::decryptString(app('store')->get((string) $obj->key())));
     assertEquals('test', $obj->retrieve());
 });
+
+it('guards on save properly', function () {
+    // prepare
+    $obj = new GuardCacheObject(function (ObjectWithTime $value) {
+        if ($value->time->isFuture()) {
+            throw new InvalidArgumentException();
+        }
+    }, null);
+
+    // execute and assert
+    $obj->store(new ObjectWithTime(now()->addHour()));
+})->throws(InvalidArgumentException::class);
+
+it('guards on load properly', function () {
+    // prepare
+    $obj = new GuardCacheObject(null, function ($value) {
+        if ($value->time->isFuture()) {
+            throw new InvalidArgumentException();
+        }
+    });
+    $obj->store(value: new ObjectWithTime(now()->addHour()));
+
+    // execute and assert
+    $obj->retrieve();
+})->throws(InvalidArgumentException::class);
