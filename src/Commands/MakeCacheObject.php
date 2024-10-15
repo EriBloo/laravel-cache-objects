@@ -22,12 +22,12 @@ class MakeCacheObject extends GeneratorCommand
     protected function resolveStubPath(string $stub): string
     {
         return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
-          ? $customPath
-          : __DIR__ . $stub;
+            ? $customPath
+            : __DIR__ . $stub;
     }
 
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return "{$rootNamespace}\Cache";
+        return config('cache-objects.path') ?: "{$rootNamespace}\Cache";
     }
 }

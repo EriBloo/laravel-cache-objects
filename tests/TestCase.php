@@ -31,6 +31,7 @@ class TestCase extends Orchestra
 
         Config::set('app.key', random_bytes(32));
         Config::set('app.cipher', 'aes-256-cbc');
+        Config::set('cache-objects.path', null);
     }
 
     protected function getPackageProviders($app)

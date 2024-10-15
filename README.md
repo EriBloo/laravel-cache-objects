@@ -84,6 +84,20 @@ You can install the package via composer:
 composer require eribloo/laravel-cache-objects
 ```
 
+You can publish the config file with:
+
+```bash
+php artisan vendor:publish --tag="laravel-cache-objects-config"
+```
+
+This is the contents of the published config file:
+```php
+return [
+    // path to cache classes folder
+    'path' => app_path('Cache'),
+];
+```
+
 ## Usage
 
 ### Creating
@@ -94,7 +108,7 @@ You can create basic Cache Object by running Artisan Command:
 php artisan make:cache-object SomeCacheObject
 ```
 
-this will create class implementing `EriBloo\CacheObjects\Contracts\CacheObject` in `app\Cache` directory with some defaults for you to configure.
+this will create class implementing `EriBloo\CacheObjects\Contracts\CacheObject` in directory specified in config (with fallback to `app\Cache`) with some defaults for you to configure.
 
 ### CacheObject
 

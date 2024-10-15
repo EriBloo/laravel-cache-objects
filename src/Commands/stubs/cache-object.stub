@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ $namespace }};
+namespace {{ namespace }};
 
 use Carbon\CarbonInterval;
 use EriBloo\CacheObjects\Concerns\CacheObjectActions;
@@ -10,13 +10,13 @@ use EriBloo\CacheObjects\Contracts\CacheValueTransformer;
 use EriBloo\CacheObjects\ValueObjects\Keys\StringKey;
 use EriBloo\CacheObjects\ValueObjects\Values\SerializeTransformer;
 
-final class {{ $class }} implements CacheObject
+final class {{ class }} implements CacheObject
 {
     use CacheObjectActions;
 
     public function key(): CacheKey
     {
-        return new StringKey("{{ $class }}");
+        return new StringKey("{{ class }}");
     }
 
     public function ttl(): CarbonInterval
