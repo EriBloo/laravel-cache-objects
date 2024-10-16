@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace EriBloo\CacheObjects\ValueObjects\Values;
 
-use EriBloo\CacheObjects\Contracts\CacheValueTransformer;
+use EriBloo\CacheObjects\Contracts\Transformer;
 
 /**
  * @template TValue
  *
- * @implements CacheValueTransformer<TValue>
+ * @implements Transformer<TValue>
  */
-final readonly class JsonTransformer implements CacheValueTransformer
+final readonly class JsonTransformer implements Transformer
 {
     /**
      * @param int<1, max> $depth

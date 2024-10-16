@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace EriBloo\CacheObjects\ValueObjects\Keys;
 
-use EriBloo\CacheObjects\Contracts\CacheKey;
+use EriBloo\CacheObjects\Contracts\Key;
 
-final readonly class StringKey implements CacheKey
+final readonly class StringKey implements Key
 {
     public function __construct(
         private string $key,

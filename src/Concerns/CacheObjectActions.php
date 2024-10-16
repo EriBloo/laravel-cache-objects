@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EriBloo\CacheObjects\Concerns;
 
-use EriBloo\CacheObjects\Contracts\CacheObjectDriver;
+use EriBloo\CacheObjects\Contracts\Driver;
 
 /**
  * @template TValue
@@ -40,8 +40,8 @@ trait CacheObjectActions
             ->delete($this);
     }
 
-    protected function resolveDriver(): CacheObjectDriver
+    protected function resolveDriver(): Driver
     {
-        return app()->make(CacheObjectDriver::class);
+        return app()->make('cache-driver');
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EriBloo\CacheObjects\Contracts;
 
-interface CacheObjectDriver
+interface Driver
 {
     /**
      * @template TValue

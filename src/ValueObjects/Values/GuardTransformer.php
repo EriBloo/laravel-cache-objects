@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace EriBloo\CacheObjects\ValueObjects\Values;
 
-use EriBloo\CacheObjects\Contracts\CacheValueTransformer;
+use EriBloo\CacheObjects\Contracts\Transformer;
 use Closure;
 
 /**
  * @template TValue
  *
- * @implements CacheValueTransformer<TValue>
+ * @implements Transformer<TValue>
  */
-final readonly class GuardTransformer implements CacheValueTransformer
+final readonly class GuardTransformer implements Transformer
 {
     /**
-     * @param CacheValueTransformer<TValue> $transformer
+     * @param Transformer<TValue> $transformer
      * @param (Closure(TValue): void)|null $onSaveGuard
      * @param (Closure(TValue): void)|null $onLoadGuard
      */
     public function __construct(
-        private CacheValueTransformer $transformer,
+        private Transformer $transformer,
         private Closure|null $onSaveGuard = null,
         private Closure|null $onLoadGuard = null,
     ) {}

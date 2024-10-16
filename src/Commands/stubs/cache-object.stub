@@ -4,9 +4,9 @@ namespace {{ namespace }};
 
 use Carbon\CarbonInterval;
 use EriBloo\CacheObjects\Concerns\CacheObjectActions;
-use EriBloo\CacheObjects\Contracts\CacheKey;
+use EriBloo\CacheObjects\Contracts\Key;
 use EriBloo\CacheObjects\Contracts\CacheObject;
-use EriBloo\CacheObjects\Contracts\CacheValueTransformer;
+use EriBloo\CacheObjects\Contracts\Transformer;
 use EriBloo\CacheObjects\ValueObjects\Keys\StringKey;
 use EriBloo\CacheObjects\ValueObjects\Values\SerializeTransformer;
 
@@ -14,7 +14,7 @@ final class {{ class }} implements CacheObject
 {
     use CacheObjectActions;
 
-    public function key(): CacheKey
+    public function key(): Key
     {
         return new StringKey("{{ class }}");
     }
@@ -24,7 +24,7 @@ final class {{ class }} implements CacheObject
         return CarbonInterval::seconds(0);
     }
 
-    public function transformer(): CacheValueTransformer
+    public function transformer(): Transformer
     {
         return new SerializeTransformer();
     }

@@ -7,7 +7,7 @@ namespace EriBloo\CacheObjects\Contracts;
 /**
  * @template T
  */
-interface CacheValueTransformer
+interface Transformer
 {
     /**
      * @return T

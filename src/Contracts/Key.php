@@ -6,4 +6,4 @@ namespace EriBloo\CacheObjects\Contracts;
 
 use Stringable;
 
-interface CacheKey extends Stringable {}
+interface Key extends Stringable {}

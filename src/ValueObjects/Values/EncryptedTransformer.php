@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace EriBloo\CacheObjects\ValueObjects\Values;
 
 use Crypt;
-use EriBloo\CacheObjects\Contracts\CacheValueTransformer;
+use EriBloo\CacheObjects\Contracts\Transformer;
 
 /**
  * @template TValue
  *
- * @implements CacheValueTransformer<TValue>
+ * @implements Transformer<TValue>
  */
-final readonly class EncryptedTransformer implements CacheValueTransformer
+final readonly class EncryptedTransformer implements Transformer
 {
     /**
-     * @param CacheValueTransformer<TValue> $transformer
+     * @param Transformer<TValue> $transformer
      */
     public function __construct(
-        private CacheValueTransformer $transformer,
+        private Transformer $transformer,
     ) {}
 
     public function onLoad(string $value): mixed

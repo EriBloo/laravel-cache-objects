@@ -11,12 +11,12 @@ use Carbon\CarbonInterval;
  */
 interface CacheObject
 {
-    public function key(): CacheKey;
+    public function key(): Key;
 
     public function ttl(): CarbonInterval;
 
     /**
-     * @return CacheValueTransformer<TValue>
+     * @return Transformer<TValue>
      */
-    public function transformer(): CacheValueTransformer;
+    public function transformer(): Transformer;
 }

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace EriBloo\CacheObjects\ValueObjects\Keys;
 
-use EriBloo\CacheObjects\Contracts\CacheKey;
+use EriBloo\CacheObjects\Contracts\Key;
 use InvalidArgumentException;
 
-final readonly class HashedKey implements CacheKey
+final readonly class HashedKey implements Key
 {
     public function __construct(
-        private CacheKey $key,
+        private Key $key,
         private string $algo = 'sha256',
     ) {
         if (! in_array($this->algo, hash_algos(), true)) {

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace EriBloo\CacheObjects\Drivers;
 
 use EriBloo\CacheObjects\Contracts\CacheObject;
-use EriBloo\CacheObjects\Contracts\CacheObjectDriver;
+use EriBloo\CacheObjects\Contracts\Driver;
 use EriBloo\CacheObjects\Events\CacheObjectDeleted;
 use EriBloo\CacheObjects\Events\CacheObjectMissed;
 use EriBloo\CacheObjects\Events\CacheObjectRetrieved;
 use EriBloo\CacheObjects\Events\CacheObjectStored;
 use Illuminate\Contracts\Cache\Store;
 
-final class CacheDriver implements CacheObjectDriver
+final class CacheDriver implements Driver
 {
     public function __construct(
         private readonly Store $store,
