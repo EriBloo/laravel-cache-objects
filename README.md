@@ -61,18 +61,18 @@ $bool = SomeUserCache::make($user)->delete();      // true
 - [Usage](#usage)
   - [Creating](#creating)
   - [CacheObject](#cacheobject)
-  - [CacheKey](#cachekey)
+  - [Key](#key)
     - [StringKey](#stringkey)
     - [HashedKey](#hashedkey)
   - [Time-to-live](#time-to-live)
-  - [CacheValueTransformer](#cachevaluetransformer)
+  - [Transformer](#transformer)
     - [JsonTransformer](#jsontransformer)
     - [SerializeTransformer](#serializetransformer)
     - [EncryptedTransformer](#encryptedtransformer)
     - [GuardTransformer](#guardtransformer)
   - [Traits](#traits)
     - [CacheObjectActions](#cacheobjectactions)
-  - [CacheObjectDriver](#cacheobjectdriver)
+  - [Driver](#driver)
     - [CacheDriver](#cachedriver)
   - [Events](#events)
     - [CacheObjectStored](#cacheobjectstored)
@@ -125,14 +125,14 @@ this will create class implementing `EriBloo\CacheObjects\Contracts\CacheObject`
 `EriBloo\CacheObjects\Contracts\CacheObject` interface requires you to implement 3 methods:
 
 ```php
-public function key(): EriBloo\CacheObjects\Contracts\CacheKey;
+public function key(): EriBloo\CacheObjects\Contracts\Key;
 public function ttl(): Carbon\CarbonInterval;
-public function transformer(): EriBloo\CacheObjects\Contracts\CacheValueTransformer;
+public function transformer(): EriBloo\CacheObjects\Contracts\Transformer;
 ```
 
-### CacheKey
+### Key
 
-CacheKey interface is a wrapper for Stringable interface responsible for preparing key for storage. Currently 2 options exist.
+Key interface is a wrapper for Stringable interface responsible for preparing key for storage. Currently 2 options exist.
 
 ##### StringKey
 
@@ -163,7 +163,7 @@ public function key(): EriBloo\CacheObjects\ValueObjects\Keys\HashedKey
 
 Defined with `Carbon\CarbonInterval`. Values that resolve to 0 or less seconds are considered to be stored forever.
 
-### CacheValueTransformer
+### Transformer
 
 Transformers are classes responsible for modifying values before storage and after retrieval.
 
@@ -236,10 +236,10 @@ public static function make(): static; // easier creation
 public function store(mixed $value): string; // put into storage, returns key stored in cache
 public function retrieve(): mixed; // get from storage
 public function delete(): bool; // remove from storage
-protected function resolveDriver(): CacheObjectDriver; // resolves to default driver from Service Provider, more below
+protected function resolveDriver(): EriBloo\CacheObjects\Contracts\Driver; // resolves to default driver from Service Provider, more below
 ```
 
-### CacheObjectDriver
+### Driver
 
 This interface defines methods used for interacting with storage. Currently 1 class exists.
 
@@ -309,7 +309,7 @@ final class CacheObjectDeleted
 
 ## Extending
 
-I created this package with ease of configuration in mind so you can easly create `CacheKey`, `CacheValueTransformer` or `CacheObjectDriver` that will suit your needs. Additionally if you have any ideas of classes that could be incorporated into main package feel free to open an Issue or Pull Request.
+I created this package with ease of configuration in mind so you can easly create `Key`, `Transformer` or `Driver` that will suit your needs. Additionally if you have any ideas of classes that could be incorporated into main package feel free to open an Issue or Pull Request.
 
 ## PHPStan
 
