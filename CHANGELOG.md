@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-cache-objects` will be documented in this file.
 
+## 1.1.4 - 2024-10-16
+
+**Full Changelog**: https://github.com/EriBloo/laravel-cache-objects/compare/1.1.3...1.1.4
+
 ## 1.1.3 - 2024-10-16
 
 - changes in interfaces names
