@@ -12,6 +12,11 @@ use EriBloo\CacheObjects\Events\CacheObjectRetrieved;
 use EriBloo\CacheObjects\Events\CacheObjectStored;
 use Illuminate\Contracts\Cache\Store;
 
+/**
+ * @template TValue
+ *
+ * @implements Driver<TValue>
+ */
 final class CacheDriver implements Driver
 {
     public function __construct(

@@ -40,6 +40,9 @@ trait CacheObjectActions
             ->delete($this);
     }
 
+    /**
+     * @return Driver<TValue>
+     */
     protected function resolveDriver(): Driver
     {
         return app()->make('cache-driver');
