@@ -5,23 +5,24 @@ declare(strict_types=1);
 namespace EriBloo\CacheObjects\Drivers;
 
 use EriBloo\CacheObjects\Contracts\CacheObject;
-use EriBloo\CacheObjects\Contracts\Driver;
 use EriBloo\CacheObjects\Events\CacheObjectDeleted;
 use EriBloo\CacheObjects\Events\CacheObjectMissed;
 use EriBloo\CacheObjects\Events\CacheObjectRetrieved;
 use EriBloo\CacheObjects\Events\CacheObjectStored;
 use Illuminate\Contracts\Cache\Store;
+use EriBloo\CacheObjects\Contracts\CacheDriver as CacheDriverContract;
 
 /**
  * @template TValue
  *
- * @implements Driver<TValue>
+ * @implements CacheDriverContract<TValue>
  */
-final class CacheDriver implements Driver
+final class CacheDriver implements CacheDriverContract
 {
     public function __construct(
         private readonly Store $store,
-    ) {}
+    ) {
+    }
 
     public function set(mixed $value, CacheObject $cacheObject): string
     {

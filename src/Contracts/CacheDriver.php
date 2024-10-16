@@ -7,7 +7,7 @@ namespace EriBloo\CacheObjects\Contracts;
 /**
  * @template TValue
  */
-interface Driver
+interface CacheDriver
 {
     /**
      * @param TValue $value
@@ -17,6 +17,7 @@ interface Driver
 
     /**
      * @param CacheObject<TValue> $cacheObject
+     *
      * @return TValue|null
      */
     public function get(CacheObject $cacheObject): mixed;

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace EriBloo\CacheObjects\Concerns;
 
-use EriBloo\CacheObjects\Contracts\CacheDriver;
+use EriBloo\CacheObjects\Contracts\SessionDriver;
 
 /**
  * @template TValue
  */
-trait CacheObjectActions
+trait SessionObjectActions
 {
     public static function make(mixed ...$arguments): static
     {
@@ -41,10 +41,10 @@ trait CacheObjectActions
     }
 
     /**
-     * @return CacheDriver<TValue>
+     * @return SessionDriver<TValue>
      */
-    protected function resolveDriver(): CacheDriver
+    protected function resolveDriver(): SessionDriver
     {
-        return app()->make('cache-driver');
+        return app()->make('session-driver');
     }
 }

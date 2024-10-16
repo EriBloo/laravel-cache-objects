@@ -8,15 +8,10 @@ use Carbon\CarbonInterval;
 
 /**
  * @template TValue
+ *
+ * @extends SessionObject<TValue>
  */
-interface CacheObject
+interface CacheObject extends SessionObject
 {
-    public function key(): Key;
-
     public function ttl(): CarbonInterval;
-
-    /**
-     * @return Transformer<TValue>
-     */
-    public function transformer(): Transformer;
 }
