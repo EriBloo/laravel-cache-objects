@@ -21,8 +21,7 @@ final class CacheDriver implements CacheDriverContract
 {
     public function __construct(
         private readonly Store $store,
-    ) {
-    }
+    ) {}
 
     public function set(mixed $value, CacheObject $cacheObject): string
     {
