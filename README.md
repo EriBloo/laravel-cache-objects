@@ -44,6 +44,17 @@ final readonly class SomeUserCache implements CacheObject
 }
 ```
 
+You can later use this object to interract with cache:
+
+```php
+
+$user = User::findOrFail(1);
+
+$key  = SomeUserCache::make($user)->store(now());  // 'some-cache:1'
+$date = SomeUserCache::make($user)->retrieve();    // App\Support\Carbon object
+$bool = SomeUserCache::make($user)->delete();      // true
+```
+
 ## Table of contents
 
 - [Installation](#installation)
